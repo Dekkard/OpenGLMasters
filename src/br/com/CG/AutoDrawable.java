@@ -15,7 +15,7 @@ import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLException;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.GLRunnable;
-
+@SuppressWarnings("all")
 public class AutoDrawable implements GLAutoDrawable{
 
 	public void setRealized(boolean realized) {
