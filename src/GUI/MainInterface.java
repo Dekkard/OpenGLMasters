@@ -27,6 +27,7 @@ import com.jogamp.opengl.awt.GLCanvas;
 import CG.FileHandling;
 import CG.Frame;
 
+@SuppressWarnings("all")
 public class MainInterface {
 	List<String> lista = new ArrayList<>();
 	private JFrame frame;
