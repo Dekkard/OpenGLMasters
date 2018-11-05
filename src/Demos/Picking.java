@@ -1,4 +1,4 @@
-package br.com.Demos;
+package Demos;
 
 //=================================================================================
 //Picking 0.2                                                       (Thomas Bladh)

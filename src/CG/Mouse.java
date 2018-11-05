@@ -1,4 +1,4 @@
-package br.com.CG;
+package CG;
 
 import com.jogamp.newt.event.MouseEvent;
 import com.jogamp.newt.event.MouseListener;

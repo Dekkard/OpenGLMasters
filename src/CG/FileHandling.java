@@ -1,4 +1,4 @@
-package br.com.CG;
+package CG;
 
 import java.io.BufferedReader;
 import java.io.File;

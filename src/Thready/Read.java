@@ -1,4 +1,4 @@
-package br.com.Thready;
+package Thready;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;

@@ -1,4 +1,4 @@
-package br.com.GUI;
+package GUI;
 
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -10,23 +10,22 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 import com.jogamp.opengl.GLCapabilities;
-import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 
-import br.com.CG.FileHandling;
-import br.com.CG.Frame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
+import CG.FileHandling;
+import CG.Frame;
 
 public class MainInterface {
 	List<String> lista = new ArrayList<>();
@@ -169,6 +168,11 @@ public class MainInterface {
 					glcanvas.display();
 					glcanvas.revalidate();
 					final int pos = glcanvas.getGLEventListenerCount();
+					
+					Frame f1 = (Frame) glcanvas.getGLEventListener(pos-1);
+					for (String str : f1.lista) {
+						System.out.println(str);
+					}
 					System.out.println("Contador de Objetos: " + pos + "\nNome:" + f.name);
 					System.out.printf("%d,%d\n",glcanvas.getGLEventListenerCount(),pos);
 					JLabel lblLabel = new JLabel(f.name);

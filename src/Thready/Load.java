@@ -1,4 +1,4 @@
-package br.com.Thready;
+package Thready;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
