@@ -1,5 +1,8 @@
 package CG;
 
+import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Iterator;
@@ -7,38 +10,32 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.awt.GLJPanel;
 
 @SuppressWarnings("all")
-public class Frame implements GLEventListener {
+public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 	static public List<String> lista;
 	public static Float X, Y;
 	public String name;
 	public static Float[] Colors;
-
+	
 	public void init(GLAutoDrawable drawable) {
-		// TODO Auto-generated method stub
 	}
-
 	public void dispose(GLAutoDrawable drawable) {
-		// TODO Auto-generated method stub
 	}
-
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-		// TODO Auto-generated method stub
 	}
-
 	public void display(GLAutoDrawable drawable) {
 		final GL2 gl = drawable.getGL().getGL2();
 		gl.glBegin(GL2.GL_POLYGON);// static field
-
 		gl.glColor3f(Colors[0], Colors[1], Colors[2]);
-
 		Iterator<String> it = lista.iterator();
 		name = it.next();
 		while (it.hasNext()) {
@@ -50,6 +47,16 @@ public class Frame implements GLEventListener {
 		gl.glEnd();
 	}
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+	
 	public static void main(String[] args) {
 		// getting the capabilities object of GL2 profile
 		final GLProfile profile = GLProfile.get(GLProfile.GL2);
@@ -58,7 +65,32 @@ public class Frame implements GLEventListener {
 		// The canvas
 		final GLCanvas glcanvas = new GLCanvas(capabilities);
 		glcanvas.setSize(400, 400);
-		
+		glcanvas.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {	
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int key = e.getKeyCode();
+				switch (key) {
+				case KeyEvent.VK_R:
+					Float[] colors2 = { 1.0f,0.0f,0.0f };
+					Colors = colors2;
+					System.out.println("Tecla Verm.");
+					break;
+				case KeyEvent.VK_G:
+					System.out.println("Tecla Verd.");
+					break;
+				case KeyEvent.VK_B:
+					System.out.println("Tecla Azulis");
+					break;
+				default:
+				}
+			}
+		});
 		// creating frame
 		final JFrame frame = new JFrame("Basic Frame");
 		frame.addWindowListener(new WindowAdapter() {
@@ -71,7 +103,6 @@ public class Frame implements GLEventListener {
 		frame.getContentPane().add(glcanvas);
 		frame.setSize(frame.getContentPane().getPreferredSize());
 		frame.setVisible(true);
-		
 		Frame b1 = Frame.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 0.0f);
 		glcanvas.addGLEventListener(b1);
 		glcanvas.display();
@@ -88,5 +119,4 @@ public class Frame implements GLEventListener {
 		Colors = color;
 		return new Frame();
 	}
-
 }

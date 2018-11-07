@@ -21,7 +21,7 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 	public static void main(String[] args) {
 		JFrame window = new JFrame("Trabalho de CG");
 		GLCapabilities caps = new GLCapabilities(null);
-		Functions panel = new Functions(caps);
+		Functions panel = new Functions();
 		window.setContentPane(panel);
 		window.pack();
 		window.setLocation(50,50);
@@ -36,8 +36,7 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 	private float scale_init; //Escala, controladas pelo teclado
 	private int  rgb[] = {1,1,1}; //Vetor para alteração de cor, controladas pelo teclado
 	
-	public Functions(GLCapabilities capabilities) {
-		super(capabilities);
+	public Functions() {
 		setPreferredSize( new Dimension(500,500) );
 		addGLEventListener(this);
 		addKeyListener(this);
