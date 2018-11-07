@@ -4,6 +4,7 @@
  * */
 package OP;
 import java.awt.Dimension;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -24,9 +25,9 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 		Functions panel = new Functions();
 		window.setContentPane(panel);
 		window.pack();
-		window.setLocation(50,50);
-		window.setResizable(true);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setLocation(300,100);//localiza��o da janela1
+		window.setResizable(true);//redimensionar janela
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//fechar janel
 		window.setVisible(true);
 		panel.requestFocusInWindow();
 	}
@@ -36,9 +37,16 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 	private float scale_init; //Escala, controladas pelo teclado
 	private int  rgb[] = {1,1,1}; //Vetor para alteração de cor, controladas pelo teclado
 	
+<<<<<<< HEAD
 	public Functions() {
 		setPreferredSize( new Dimension(500,500) );
 		addGLEventListener(this);
+=======
+	public Functions(GLCapabilities capabilities) {
+		super(capabilities);
+		setPreferredSize( new Dimension(500,500) );//plotando as dimens�es para 500x500
+		addGLEventListener(this);//
+>>>>>>> refs/remotes/origin/master
 		addKeyListener(this);
 		rotateX = 0;
 		rotateY = 0;
@@ -51,6 +59,8 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 	// ----------------- define o método de desenho ----------
 
 	private void square(GL2 gl, float r, float g, float b) {
+		
+		gl.glLineWidth(3);
 		gl.glColor3f(r,g,b);         // A cor do polígono
 		gl.glTranslatef(moveX,moveY,0);    // Define a posição inicial
 		gl.glScalef(scale_init, scale_init, 0);
@@ -64,7 +74,20 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 		gl.glVertex2f(0.5f,0.6f);
 		gl.glVertex2f(0.3f,0.4f);
 		gl.glVertex2f(0.4f,0.2f);	              
+		gl.glEnd();		
+	}
+	private void plane(GL2 gl) 
+	{
+		gl.glLineWidth(3);
+		gl.glPushMatrix();
+		gl.glBegin(GL2.GL_LINES);
+		gl.glVertex2f(0.0f,-1.0f);
+		gl.glVertex2f(0.0f,1.0f);
+		gl.glColor3f(1.0f, 1.0f, 1.0f);
+		gl.glVertex2f(-1.0f,0.0f);
+		gl.glVertex2f(1.0f,0.0f);
 		gl.glEnd();
+		gl.glPopMatrix(); 
 	}
 
 	private void cube(GL2 gl) {
@@ -92,6 +115,11 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 		gl.glRotatef(rotateY,0,1,0);
 		gl.glRotatef(rotateX,1,0,0);
 		cube(gl);
+		GL2 gl2 = drawable.getGL().getGL2();
+		plane(gl2);
+		gl2.glRotatef(rotateY,0,0,1);
+		gl2.glRotatef(rotateY,0,1,0);
+		gl2.glRotatef(rotateX,1,0,0);
 	}
 
 	public void init(GLAutoDrawable drawable) {
@@ -162,9 +190,11 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 	    	             break;
 	    	     case KeyEvent.VK_X:
 	    	    	 moveX *= -1;
+	    	    	 //scale_init *= -1;
 	    	             break;
 	    	     case KeyEvent.VK_Y:
 	    	    	 moveY *= -1;
+	    	     	 //scale_init *= -1;
 	    	             break;
 	    	     case KeyEvent.VK_HOME:
 	    	    		rotateX = rotateY = rotateZ = 0;
