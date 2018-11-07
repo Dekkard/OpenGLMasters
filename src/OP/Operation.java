@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import CG.Frame;
+import CG.ObjectGeo;
 
 @SuppressWarnings("all")
 public class Operation {
 	private String name;
 
-	public void translate(Frame frame, float x, float y) {
+	public void translate(ObjectGeo frame, float x, float y) {
 		List<String> lista = new ArrayList<>();
 		Iterator<String> it = frame.lista.iterator();
 		name = it.next();
@@ -28,7 +28,7 @@ public class Operation {
 		frame.lista = lista;
 	}
 
-	public void rotate(Frame frame, double angle) {
+	public void rotate(ObjectGeo frame, double angle) {
 		List<String> lista = new ArrayList<>();
 		Iterator<String> it = frame.lista.iterator();
 		float medX = 0.0f;
@@ -61,7 +61,7 @@ public class Operation {
 		frame.lista = lista;
 	}
 
-	public void scale(Frame frame, float scale) {
+	public void scale(ObjectGeo frame, float scale) {
 		List<String> lista = new ArrayList<>();
 		Iterator<String> it = frame.lista.iterator();
 		float medX = 0.0f;

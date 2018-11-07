@@ -25,7 +25,7 @@ import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 
 import CG.FileHandling;
-import CG.Frame;
+import CG.ObjectGeo;
 
 @SuppressWarnings("all")
 public class MainInterface {
@@ -161,10 +161,7 @@ public class MainInterface {
 			JButton btnAddobjeto = new JButton(name);
 			btnAddobjeto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (eixoX.getText() == null || eixoY.getText() == null) {
-
-					}
-					Frame f = Frame.drawEvent(lista, Float.parseFloat(eixoX.getText() + "f"),
+					ObjectGeo f = ObjectGeo.drawEvent(lista, Float.parseFloat(eixoX.getText() + "f"),
 							Float.parseFloat(eixoY.getText() + "f"), 1.0f, 1.0f, 1.0f);
 					glcanvas.addGLEventListener(f);
 

@@ -20,11 +20,12 @@ import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.awt.GLJPanel;
 
 @SuppressWarnings("all")
-public class Frame extends GLJPanel implements GLEventListener, KeyListener {
+public class ObjectGeo extends GLJPanel implements GLEventListener, KeyListener {
 	static public List<String> lista;
 	public static Float X, Y;
 	public String name;
 	public static Float[] Colors;
+	public static byte escolha;
 
 	public void init(GLAutoDrawable drawable) {}
 	public void dispose(GLAutoDrawable drawable) {}
@@ -71,10 +72,10 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 		frame.getContentPane().add(glcanvas);
 		frame.setSize(frame.getContentPane().getPreferredSize());
 		frame.setVisible(true);
-		Frame b1 = Frame.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
+		ObjectGeo b1 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b1);
 		glcanvas.display();
-		Frame b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, 0.0f, 0.0f, 1.0f);
+		ObjectGeo b2 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, 0.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b2);
 		glcanvas.display();
 
@@ -115,17 +116,17 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 		});
 	}
 
-	public static void changeColor(Frame b2, float r, float g, float b, GLCanvas glcanvas) {
-		b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.4f, 0.0f, r, g, b);
+	public static void changeColor(ObjectGeo b2, float r, float g, float b, GLCanvas glcanvas) {
+		b2 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), 0.4f, 0.0f, r, g, b);
 		glcanvas.display();
 	}
 
-	public static Frame drawEvent(List<String> forma, float x, float y, float c_r, float c_g, float c_b) {
+	public static ObjectGeo drawEvent(List<String> forma, float x, float y, float c_r, float c_g, float c_b) {
 		lista = forma;
 		X = x;
 		Y = y;
 		Float[] color = { c_r, c_g, c_b };
 		Colors = color;
-		return new Frame();
+		return new ObjectGeo();
 	}
 }

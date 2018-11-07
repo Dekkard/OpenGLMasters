@@ -27,7 +27,7 @@ public class Teste1 {
 
                 //adiciona dinamicamente no clique
                 final JTextField textField = new JTextField("Caixa " + ++contador);
-                textField.setBounds(event.getX(), event.getY(), 200, 30);
+                textField.setBounds(event.getX()-25, event.getY()-15, 50, 30);
                 janela.getContentPane().add(textField);
 
             }

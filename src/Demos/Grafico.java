@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 /*
- Classe que testa o uso de eventos e gr�ficos em applets
+ Classe que testa o uso de eventos e gráficos em applets
  */
 public class Grafico extends JApplet implements KeyListener, MouseMotionListener, MouseListener
 {	//Guarda a coluna em que o mouse se encontra
@@ -15,15 +15,15 @@ public class Grafico extends JApplet implements KeyListener, MouseMotionListener
 	private int x = 0;
 	//Guarda a linha em que o mouse se encontra
 	private int y = 0;
-	//Guarda a mensagem que fala qual evento de mouse est� acontecendo
+	//Guarda a mensagem que fala qual evento de mouse está acontecendo
 	private String msg = "";
-  	//Guarda a mensagem que fala qual evento de tecla est� acontecendo
+  	//Guarda a mensagem que fala qual evento de tecla está acontecendo
   	private String keyMsg="";
-	//Acontece quando uma tecla � pressionada
+	//Acontece quando uma tecla é pressionada
 	public void keyPressed(KeyEvent e)
 	{  keyMsg = "Pressionado a tecla "+e.getKeyChar();
 		}
-	//Acontece quando uma tecla � solta
+	//Acontece quando uma tecla é solta
 	public void keyReleased(KeyEvent e)
 	{  keyMsg = "Soltou a tecla "+e.getKeyChar();
 		}
