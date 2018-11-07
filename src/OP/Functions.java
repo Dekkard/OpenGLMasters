@@ -2,7 +2,7 @@
  * interação com o usuário, funções de teste implementadas:
  * - cor, mover, rotacionar, mudar escala, espelhar (efeito fantasma)
  * */
-package OP;
+/*package OP;
 import java.awt.Dimension;
 
 import java.awt.event.KeyEvent;
@@ -210,4 +210,4 @@ public class Functions extends GLJPanel implements GLEventListener, KeyListener 
 		public void keyTyped(KeyEvent e) { 
 		}
 
-}
+}*/

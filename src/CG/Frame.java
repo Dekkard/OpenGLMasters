@@ -65,32 +65,7 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 		// The canvas
 		final GLCanvas glcanvas = new GLCanvas(capabilities);
 		glcanvas.setSize(400, 400);
-		glcanvas.addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-			@Override
-			public void keyReleased(KeyEvent e) {	
-			}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				int key = e.getKeyCode();
-				switch (key) {
-				case KeyEvent.VK_R:
-					Float[] colors2 = { 1.0f,0.0f,0.0f };
-					Colors = colors2;
-					System.out.println("Tecla Verm.");
-					break;
-				case KeyEvent.VK_G:
-					System.out.println("Tecla Verd.");
-					break;
-				case KeyEvent.VK_B:
-					System.out.println("Tecla Azulis");
-					break;
-				default:
-				}
-			}
-		});
+
 		// creating frame
 		final JFrame frame = new JFrame("Basic Frame");
 		frame.addWindowListener(new WindowAdapter() {
@@ -103,14 +78,45 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 		frame.getContentPane().add(glcanvas);
 		frame.setSize(frame.getContentPane().getPreferredSize());
 		frame.setVisible(true);
-		Frame b1 = Frame.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 0.0f);
+		/*Frame b1 = Frame.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b1);
-		glcanvas.display();
-		Frame b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, 0.0f, 1.0f, 0.0f);
+		glcanvas.display();*/
+		Frame b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, 0.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b2);
 		glcanvas.display();
+		
+		glcanvas.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {	
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				int key = e.getKeyCode();
+				switch (key) {
+				case KeyEvent.VK_R:
+					changeColor(b2, 1.0f, 0.0f, 0.0f, glcanvas);
+					System.out.println("Tecla Verm.");
+					break;
+				case KeyEvent.VK_G:
+					changeColor(b2, 0.0f, 1.0f, 0.0f, glcanvas);
+					System.out.println("Tecla Verd.");
+					break;
+				case KeyEvent.VK_B:
+					changeColor(b2, 0.0f, 0.0f, 1.0f, glcanvas);
+					System.out.println("Tecla Azulis");
+					break;
+				default:
+				}
+			}
+		});
 	}
-
+	public static void changeColor(Frame b2, float r, float g, float b, GLCanvas glcanvas) {
+		b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, r, g, b);
+		glcanvas.display();
+	}
 	public static Frame drawEvent(List<String> forma, float x, float y, float c_r, float c_g, float c_b) {
 		lista = forma;
 		X = x;
