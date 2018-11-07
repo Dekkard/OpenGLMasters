@@ -4,30 +4,34 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 /*
- Classe que testa o uso de eventos e gráficos em applets
+ Classe que testa o uso de eventos e grï¿½ficos em applets
  */
 public class Grafico extends JApplet implements KeyListener, MouseMotionListener, MouseListener
 {	//Guarda a coluna em que o mouse se encontra
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x = 0;
 	//Guarda a linha em que o mouse se encontra
 	private int y = 0;
-	//Guarda a mensagem que fala qual evento de mouse está acontecendo
+	//Guarda a mensagem que fala qual evento de mouse estï¿½ acontecendo
 	private String msg = "";
-  	//Guarda a mensagem que fala qual evento de tecla está acontecendo
+  	//Guarda a mensagem que fala qual evento de tecla estï¿½ acontecendo
   	private String keyMsg="";
-	//Acontece quando uma tecla é pressionada
+	//Acontece quando uma tecla ï¿½ pressionada
 	public void keyPressed(KeyEvent e)
 	{  keyMsg = "Pressionado a tecla "+e.getKeyChar();
 		}
-	//Acontece quando uma tecla é solta
+	//Acontece quando uma tecla ï¿½ solta
 	public void keyReleased(KeyEvent e)
 	{  keyMsg = "Soltou a tecla "+e.getKeyChar();
 		}
 	//Acontece enquando uma tecla esta sendo segurada
 	public void keyTyped(KeyEvent e)
-	{  keyMsg = "Está pressionando a tecla "+e.getKeyChar();
+	{  keyMsg = "Estï¿½ pressionando a tecla "+e.getKeyChar();
 		}
-	//Acontece quando o mouse está sendo clicado e move
+	//Acontece quando o mouse estï¿½ sendo clicado e move
 	public void mouseDragged(MouseEvent e)
 	{ 	x = e.getX();
 		y = e.getY();
@@ -39,7 +43,7 @@ public class Grafico extends JApplet implements KeyListener, MouseMotionListener
 		y = e.getY();
 		repaint();
 		}
-	//Acontece quando o botão do mouse é apertado
+	//Acontece quando o botï¿½o do mouse ï¿½ apertado
 	public void mouseClicked(MouseEvent e)
 	{  msg = "Mouse Clicado";
 		}
@@ -51,11 +55,11 @@ public class Grafico extends JApplet implements KeyListener, MouseMotionListener
  	public void mouseExited(MouseEvent e)
  	{	msg="Mouse Saiu";
 		}
-	//Acontece enquanto o botão do mouse está sendo preciosado
+	//Acontece enquanto o botï¿½o do mouse estï¿½ sendo preciosado
  	public void mousePressed(MouseEvent e)
 	{	msg="Mouse Pressionando...";
 		}
- 	//Acontece quando o botão do mouse é solto
+ 	//Acontece quando o botï¿½o do mouse ï¿½ solto
  	public void mouseReleased(MouseEvent e)
  	{  msg="Mouse Soltou";
 		}
@@ -69,7 +73,7 @@ public class Grafico extends JApplet implements KeyListener, MouseMotionListener
 	public void paint(Graphics g)
 	{	g.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		g.clearRect(0,0,getHeight(),getWidth());
-		g.drawString("A posisão (x,y) do mouse é: ("+x+","+y+")", 1, getHeight()-10);
+		g.drawString("A posisï¿½o (x,y) do mouse ï¿½: ("+x+","+y+")", 1, getHeight()-10);
 		g.drawString(msg, 1, getHeight()-30);
 		g.drawString(keyMsg, 1, getHeight()-50);
 		}

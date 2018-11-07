@@ -25,19 +25,18 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 	public static Float X, Y;
 	public String name;
 	public static Float[] Colors;
-	
-	public void init(GLAutoDrawable drawable) {
-	}
-	public void dispose(GLAutoDrawable drawable) {
-	}
-	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-	}
+
+	public void init(GLAutoDrawable drawable) {}
+	public void dispose(GLAutoDrawable drawable) {}
+	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {}
+
 	public void display(GLAutoDrawable drawable) {
 		final GL2 gl = drawable.getGL().getGL2();
 		gl.glBegin(GL2.GL_POLYGON);// static field
 		gl.glColor3f(Colors[0], Colors[1], Colors[2]);
 		Iterator<String> it = lista.iterator();
 		name = it.next();
+		System.out.println(name);
 		while (it.hasNext()) {
 			String ver1 = it.next();
 			String ver2 = it.next();
@@ -47,16 +46,10 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 		gl.glEnd();
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-	}
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-	
+	@Override public void keyTyped(KeyEvent e) {}
+	@Override public void keyPressed(KeyEvent e) {}
+	@Override public void keyReleased(KeyEvent e) {}
+
 	public static void main(String[] args) {
 		// getting the capabilities object of GL2 profile
 		final GLProfile profile = GLProfile.get(GLProfile.GL2);
@@ -78,24 +71,32 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 		frame.getContentPane().add(glcanvas);
 		frame.setSize(frame.getContentPane().getPreferredSize());
 		frame.setVisible(true);
-		/*Frame b1 = Frame.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
+		Frame b1 = Frame.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b1);
-		glcanvas.display();*/
+		glcanvas.display();
 		Frame b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, 0.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b2);
 		glcanvas.display();
-		
+
 		glcanvas.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}
+
 			@Override
-			public void keyReleased(KeyEvent e) {	
+			public void keyReleased(KeyEvent e) {
 			}
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int key = e.getKeyCode();
 				switch (key) {
+				case KeyEvent.VK_PAGE_UP:
+				case KeyEvent.VK_PAGE_DOWN:
+				case KeyEvent.VK_UP:
+				case KeyEvent.VK_LEFT:
+				case KeyEvent.VK_RIGHT:
+				case KeyEvent.VK_DOWN:
 				case KeyEvent.VK_R:
 					changeColor(b2, 1.0f, 0.0f, 0.0f, glcanvas);
 					System.out.println("Tecla Verm.");
@@ -113,10 +114,12 @@ public class Frame extends GLJPanel implements GLEventListener, KeyListener {
 			}
 		});
 	}
+
 	public static void changeColor(Frame b2, float r, float g, float b, GLCanvas glcanvas) {
-		b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, r, g, b);
+		b2 = Frame.drawEvent(FileHandling.Load("form4.txt"), 0.4f, 0.0f, r, g, b);
 		glcanvas.display();
 	}
+
 	public static Frame drawEvent(List<String> forma, float x, float y, float c_r, float c_g, float c_b) {
 		lista = forma;
 		X = x;

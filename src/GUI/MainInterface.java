@@ -31,8 +31,8 @@ import CG.Frame;
 public class MainInterface {
 	List<String> lista = new ArrayList<>();
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField eixoX;
+	private JTextField eixoY;
 
 	/**
 	 * Launch the application.
@@ -101,7 +101,7 @@ public class MainInterface {
 
 		JLabel lblEixoX = new JLabel("Eixo X");
 		lblEixoX.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEixoX.setBounds(10, 36, 46, 14);
+		lblEixoX.setBounds(10, 39, 46, 14);
 		panel_3.add(lblEixoX);
 
 		JLabel lblEixoY = new JLabel("Eixo Y");
@@ -109,17 +109,19 @@ public class MainInterface {
 		lblEixoY.setBounds(10, 61, 46, 14);
 		panel_3.add(lblEixoY);
 
-		textField = new JTextField();
-		textField.setBounds(66, 36, 86, 20);
-		textField.setText("0.0");
-		panel_3.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(66, 58, 86, 20);
-		textField_1.setText("0.0");
-		panel_3.add(textField_1);
-		textField_1.setColumns(10);
+		eixoX = new JTextField();
+		eixoX.setHorizontalAlignment(SwingConstants.CENTER);
+		eixoX.setBounds(66, 36, 86, 20);
+		eixoX.setText("0.0");
+		panel_3.add(eixoX);
+		eixoX.setColumns(10);
+
+		eixoY = new JTextField();
+		eixoY.setHorizontalAlignment(SwingConstants.CENTER);
+		eixoY.setBounds(66, 58, 86, 20);
+		eixoY.setText("0.0");
+		panel_3.add(eixoY);
+		eixoY.setColumns(10);
 
 		/* Painel Scroll 1 com os objetos a serem adicionados */
 		JScrollPane scrollPane = new JScrollPane();
@@ -159,44 +161,37 @@ public class MainInterface {
 			JButton btnAddobjeto = new JButton(name);
 			btnAddobjeto.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (textField.getText() == null || textField_1.getText() == null) {
-						
+					if (eixoX.getText() == null || eixoY.getText() == null) {
+
 					}
-					Frame f = Frame.drawEvent(lista, Float.parseFloat(textField.getText() + "f"),
-							Float.parseFloat(textField_1.getText() + "f"), 1.0f, 1.0f, 1.0f);
+					Frame f = Frame.drawEvent(lista, Float.parseFloat(eixoX.getText() + "f"),
+							Float.parseFloat(eixoY.getText() + "f"), 1.0f, 1.0f, 1.0f);
 					glcanvas.addGLEventListener(f);
-					
+
 					glcanvas.display();
 					glcanvas.revalidate();
 					final int pos = glcanvas.getGLEventListenerCount();
-					
-					Frame f1 = (Frame) glcanvas.getGLEventListener(pos-1);
-					for (String str : f1.lista) {
-						System.out.println(str);
-					}
-					System.out.println("Contador de Objetos: " + pos + "\nNome:" + f.name);
-					System.out.printf("%d,%d\n",glcanvas.getGLEventListenerCount(),pos);
-					JLabel lblLabel = new JLabel(f.name);
+
+					System.out.println("Contador de Objetos: " + pos + "\nNome:" + name);
+					JLabel lblLabel = new JLabel(name);
 					lblLabel.setHorizontalAlignment(SwingConstants.CENTER);
 					GridBagConstraints gbc_lblLabel = new GridBagConstraints();
 					gbc_lblLabel.gridx = 0;
-					gbc_lblLabel.gridy = pos-1;
+					gbc_lblLabel.gridy = pos - 1;
 
 					JButton btnButton = new JButton("Deletar");
 					btnButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							glcanvas.disposeGLEventListener(glcanvas.getGLEventListener(pos-1),true);
+							glcanvas.disposeGLEventListener(f, true);
 							glcanvas.revalidate();
-							
 							panel_2.remove(lblLabel);
 							panel_2.remove(btnButton);
 							panel_2.revalidate();
-							System.out.printf("%d,%d\n",glcanvas.getGLEventListenerCount(),pos);
 						}
 					});
 					GridBagConstraints gbc_btnButton = new GridBagConstraints();
 					gbc_btnButton.gridx = 1;
-					gbc_btnButton.gridy = pos-1;
+					gbc_btnButton.gridy = pos - 1;
 
 					panel_2.add(lblLabel, gbc_lblLabel);
 					panel_2.add(btnButton, gbc_btnButton);

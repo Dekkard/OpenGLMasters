@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import java.awt.Dimension;
 
 public class Teste1 {
 
@@ -17,7 +16,7 @@ public class Teste1 {
         //janela
         final JFrame janela = new JFrame("Test JTextField Generation");
 
-        //posicionamento sem nenhum layout, isto é, absoluto
+        //posicionamento sem nenhum layout, isto ï¿½, absoluto
         janela.getContentPane().setLayout(null);
 
         //adiciona listener do mouse
