@@ -179,6 +179,8 @@ public class ObjectGeo extends GLJPanel implements GLEventListener, KeyListener 
 					System.out.println("Transl. Baixo");
 					break;
 				default:
+					System.out.println("Tecla qualquer. Cód:"+key);
+					break;
 				}
 			}
 		});
