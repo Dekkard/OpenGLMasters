@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,6 +46,11 @@ public class CriaObj extends JFrame {
 	 * Create the frame.
 	 */
 	public CriaObj(JPanel pnl) {
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				dispose();
+			}
+		});
 		List<String> lista = new ArrayList<>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 300, 340);
@@ -115,7 +122,7 @@ public class CriaObj extends JFrame {
 				panel_1.getRootPane().add(b1);
 				lista.add(String.valueOf((float) x - 0.5f));
 				lista.add(String.valueOf((float) -(y - 0.5f)));
-				lista.add("0.0");
+				
 			}
 		});
 	}

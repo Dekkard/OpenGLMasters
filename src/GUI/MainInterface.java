@@ -96,88 +96,82 @@ public class MainInterface {
 		glcanvas.setSize(588, 518);
 //		panel.add(glcanvas);
 
-		glcanvas.addKeyListener(new KeyListener() {
-			@Override public void keyTyped(KeyEvent e) {}
-			@Override public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyPressed(KeyEvent e) {
-				int key = e.getKeyCode();
-				switch (key) {
-				case KeyEvent.VK_PAGE_UP:
-				case KeyEvent.VK_PAGE_DOWN:
-				case KeyEvent.VK_UP:
-				case KeyEvent.VK_LEFT:
-				case KeyEvent.VK_RIGHT:
-				case KeyEvent.VK_DOWN:
-				case KeyEvent.VK_R:
-					ObjectGeo.reshape(glcanvas, 1);
-					System.out.println("Tecla Verm.");
-					break;
-				case KeyEvent.VK_G:
-					ObjectGeo.reshape(glcanvas, 2);
-					System.out.println("Tecla Verd.");
-					break;
-				case KeyEvent.VK_B:
-					ObjectGeo.reshape(glcanvas, 3);
-					System.out.println("Tecla Azulis");
-					break;
-				default:
-				}
-			}
-		});
-		glcanvas.addMouseListener(new MouseListener() {
-			static final int NOTHING = 0, UPDATE = 1, SELECT = 2;
-			int cmd = UPDATE;
-			public float mouse_x, mouse_y;
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				this.cmd = SELECT;
-				double x = (((double) e.getX() / (double) glcanvas.getWidth())-0.5)*2;
-				double y = (((double) e.getY() / (double) glcanvas.getHeight())-0.5)*(-2);
-//				System.out.println("mouse: " + x + "," + y);
-				double closest = 0.2f;
-				String closestName = null;
-				for (int i = 0; i < glcanvas.getGLEventListenerCount(); i++) {
-					ObjectGeo obj = (ObjectGeo) glcanvas.getGLEventListener(i);
-					Iterator<String> it = obj.lista.iterator();
-					double medX = 0.0;
-					double medY = 0.0;
-					int cnt = 0;
-					String name = it.next();
+//		glcanvas.addKeyListener(new KeyListener() {
+//			@Override public void keyTyped(KeyEvent e) {}
+//			@Override public void keyReleased(KeyEvent e) {}
+//			@Override
+//			public void keyPressed(KeyEvent e) {
+//				int key = e.getKeyCode();
+//				switch (key) {
+//				case KeyEvent.VK_PAGE_UP:
+//				case KeyEvent.VK_PAGE_DOWN:
+//				case KeyEvent.VK_UP:
+//				case KeyEvent.VK_LEFT:
+//				case KeyEvent.VK_RIGHT:
+//				case KeyEvent.VK_DOWN:
+//				case KeyEvent.VK_R:
+//					ObjectGeo.reshape(glcanvas, 1);
+//					System.out.println("Tecla Verm.");
+//					break;
+//				case KeyEvent.VK_G:
+//					ObjectGeo.reshape(glcanvas, 2);
+//					System.out.println("Tecla Verd.");
+//					break;
+//				case KeyEvent.VK_B:
+//					ObjectGeo.reshape(glcanvas, 3);
+//					System.out.println("Tecla Azulis");
+//					break;
+//				default:
+//				}
+//			}
+//		});
+//		glcanvas.addMouseListener(new MouseListener() {
+//			static final int NOTHING = 0, UPDATE = 1, SELECT = 2;
+//			int cmd = UPDATE;
+//			public float mouse_x, mouse_y;
+//			
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				this.cmd = SELECT;
+//				double x = (((double) e.getX() / (double) glcanvas.getWidth()) - 0.5) * 2;
+//				double y = (((double) e.getY() / (double) glcanvas.getHeight()) - 0.5) * (-2);
+//				double closest = 0.2f;
+//				String closestName = null;
+//				for (int i = 0; i < glcanvas.getGLEventListenerCount(); i++) {
+////					System.out.println(glcanvas.get); 
+//					ObjectGeo obj = (ObjectGeo) glcanvas.getGLEventListener(i);
+////					glcanvas.getCom
+//					Iterator<String> it = obj.listaAtual.iterator();
+//					double medX = 0.0;
+//					double medY = 0.0;
+//					int cnt = 0;
+//					String name = it.next();
 //					System.out.println(name);
-					while (it.hasNext()) {
-						String ver1 = it.next();
-						String ver2 = it.next();
-						String ver3 = it.next();
-						String tmp1 = ver1.substring(0, ver1.length()-1);
-						String tmp2 = ver2.substring(0, ver2.length()-1);
-//						System.out.println("vert:"+tmp1+","+tmp2);
-						medX += Double.parseDouble(tmp1);
-						medY += Double.parseDouble(tmp2);
-//						System.out.println("total:"+medX+","+medY);
-						cnt++;
-					}
-//					System.out.println("média:(" + medX + "," + medY+")  ->"+cnt);
-					medX = medX/(double)cnt;
-					medY = medY/(double)cnt;
-//					System.out.println("média:(" + medX + "," + medY+")");
-					double dst = Math.sqrt(
-							Math.pow((Math.abs(medX - x)), 2.0) 
-							+ Math.pow((Math.abs(medY - y)), 2.0));
-					System.out.println("Dist: "+dst);
-					if (closest >= dst) {
-						closest = dst;
-						closestName = name;
-					}
-				}
-				System.out.println(closestName);
-			}
-			@Override public void mouseEntered(MouseEvent e) {}
-			@Override public void mouseExited(MouseEvent e) {}
-			@Override public void mousePressed(MouseEvent e) {}
-			@Override public void mouseReleased(MouseEvent e) {}
-		});
+//					while (it.hasNext()) {
+//						String ver1 = it.next();
+//						String ver2 = it.next();
+//						String tmp1 = ver1.substring(0, ver1.length() - 1);
+//						String tmp2 = ver2.substring(0, ver2.length() - 1);
+//						medX += Double.parseDouble(tmp1);
+//						medY += Double.parseDouble(tmp2);
+//						cnt++;
+//					}
+//					medX = medX / (double) cnt;
+//					medY = medY / (double) cnt;
+//					double dst = Math.sqrt(Math.pow((Math.abs(medX - x)), 2.0) + Math.pow((Math.abs(medY - y)), 2.0));
+//					System.out.println("Dist: " + dst);
+//					if (closest >= dst) {
+//						closest = dst;
+//						closestName = name;
+//					}
+//				}
+//				System.out.println(closestName);
+//			}
+//			@Override public void mouseEntered(MouseEvent e) {}
+//			@Override public void mouseExited(MouseEvent e) {}
+//			@Override public void mousePressed(MouseEvent e) {}
+//			@Override public void mouseReleased(MouseEvent e) {}
+//		});
 		
 		
 		JPanel panel_3 = new JPanel();
@@ -272,6 +266,7 @@ public class MainInterface {
 					btnButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							glcanvas.disposeGLEventListener(f, true);
+							glcanvas.display();
 							glcanvas.revalidate();
 							panel_2.remove(lblLabel);
 							panel_2.remove(btnButton);
