@@ -4,7 +4,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import CG.FileHandling;
+import CG.ObjectGeo;
 
 
 public class Teste1 {
@@ -25,11 +29,13 @@ public class Teste1 {
             @Override
             public void mouseClicked(MouseEvent event) {
 
-                //adiciona dinamicamente no clique
-                final JTextField textField = new JTextField("Caixa " + ++contador);
-                textField.setBounds(event.getX()-25, event.getY()-15, 50, 30);
-                janela.getContentPane().add(textField);
-
+            	JRadioButton b1 = new JRadioButton();                //adiciona dinamicamente no clique
+            	int x = event.getX()-25;
+            	int y =event.getY()-15;
+                //final JTextField textField = new JTextField("o"+x+"-"+y);
+                System.out.println("x, y:"+x+","+y);
+                b1.setBounds(event.getX()-25, event.getY()-15, 50, 30);
+                janela.getContentPane().add(b1);
             }
         });
 
