@@ -10,9 +10,9 @@ import CG.ObjectGeo;
 public class Operation {
 	private String name;
 
-	public void translate(ObjectGeo frame, float x, float y) {
+	public void translate(ObjectGeo objgeo, float x, float y) {
 		List<String> lista = new ArrayList<>();
-		Iterator<String> it = frame.lista.iterator();
+		Iterator<String> it = objgeo.lista.iterator();
 		name = it.next();
 		lista.add(name);
 		while (it.hasNext()) {
@@ -25,12 +25,12 @@ public class Operation {
 			lista.add(String.valueOf(ver2));
 			lista.add(ver3);
 		}
-		frame.lista = lista;
+		objgeo.lista = lista;
 	}
 
-	public void rotate(ObjectGeo frame, double angle) {
+	public void rotate(ObjectGeo objgeo, double angle) {
 		List<String> lista = new ArrayList<>();
-		Iterator<String> it = frame.lista.iterator();
+		Iterator<String> it = objgeo.lista.iterator();
 		float medX = 0.0f;
 		float medY = 0.0f;
 		int cnt = 0;
@@ -58,12 +58,12 @@ public class Operation {
 			lista.add(String.valueOf(ver2f + medY));
 			lista.add(ver3);
 		}
-		frame.lista = lista;
+		objgeo.lista = lista;
 	}
 
-	public void scale(ObjectGeo frame, float scale) {
+	public void scale(ObjectGeo objgeo, float scale) {
 		List<String> lista = new ArrayList<>();
-		Iterator<String> it = frame.lista.iterator();
+		Iterator<String> it = objgeo.lista.iterator();
 		float medX = 0.0f;
 		float medY = 0.0f;
 		int cnt = 0;
@@ -88,6 +88,6 @@ public class Operation {
 			lista.add(String.valueOf(ver2 * scale + medY));
 			lista.add(ver3);
 		}
-		frame.lista = lista;
+		objgeo.lista = lista;
 	}
 }

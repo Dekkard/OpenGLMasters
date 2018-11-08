@@ -54,9 +54,9 @@ public class Picking {
 
 		public void init(GLAutoDrawable drawable) {
 			GL2 gl = drawable.getGL().getGL2();
-//			gl.glEnable(GL2.GL_CULL_FACE);
-//			gl.glEnable(GL2.GL_DEPTH_TEST);
-//			gl.glEnable(GL2.GL_NORMALIZE);
+			gl.glEnable(GL2.GL_CULL_FACE);
+			gl.glEnable(GL2.GL_DEPTH_TEST);
+			gl.glEnable(GL2.GL_NORMALIZE);
 			gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		}
 
