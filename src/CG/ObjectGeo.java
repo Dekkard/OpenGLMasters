@@ -72,9 +72,9 @@ public class ObjectGeo extends GLJPanel implements GLEventListener, KeyListener 
 		frame.getContentPane().add(glcanvas);
 		frame.setSize(frame.getContentPane().getPreferredSize());
 		frame.setVisible(true);
-		ObjectGeo b1 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
-		glcanvas.addGLEventListener(b1);
-		glcanvas.display();
+		//ObjectGeo b1 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), -0.2f, 0.2f, 1.0f, 0.0f, 1.0f);
+		//glcanvas.addGLEventListener(b1);
+		//glcanvas.display();
 		ObjectGeo b2 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), 0.2f, 0.0f, 0.0f, 0.0f, 1.0f);
 		glcanvas.addGLEventListener(b2);
 		glcanvas.display();
@@ -99,15 +99,15 @@ public class ObjectGeo extends GLJPanel implements GLEventListener, KeyListener 
 				case KeyEvent.VK_RIGHT:
 				case KeyEvent.VK_DOWN:
 				case KeyEvent.VK_R:
-					changeColor(b2, 1.0f, 0.0f, 0.0f, glcanvas);
+					reshape (Colors, glcanvas, 1);
 					System.out.println("Tecla Verm.");
 					break;
 				case KeyEvent.VK_G:
-					changeColor(b2, 0.0f, 1.0f, 0.0f, glcanvas);
+					reshape (Colors, glcanvas, 2);
 					System.out.println("Tecla Verd.");
 					break;
 				case KeyEvent.VK_B:
-					changeColor(b2, 0.0f, 0.0f, 1.0f, glcanvas);
+					reshape (Colors, glcanvas, 3);
 					System.out.println("Tecla Azulis");
 					break;
 				default:
@@ -116,9 +116,20 @@ public class ObjectGeo extends GLJPanel implements GLEventListener, KeyListener 
 		});
 	}
 
-	public static void changeColor(ObjectGeo b2, float r, float g, float b, GLCanvas glcanvas) {
-		b2 = ObjectGeo.drawEvent(FileHandling.Load("form4.txt"), 0.4f, 0.0f, r, g, b);
-		glcanvas.display();
+	public static void reshape (Float[] Colors, GLCanvas glcanvas, int flag) {
+		if (flag == 1) {
+		Colors[0] = 1.0f;
+		Colors[1] = Colors[2]= 0.0f;
+		}
+		if (flag == 2) {
+			Colors[0] = Colors[2] = 0.0f;
+			Colors[1] = 1.0f;
+			}
+		if (flag == 3) {
+			Colors[0] = Colors[1]  = 0.0f;
+			Colors[2] = 1.0f;
+			}
+		glcanvas.repaint();		
 	}
 
 	public static ObjectGeo drawEvent(List<String> forma, float x, float y, float c_r, float c_g, float c_b) {
